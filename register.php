@@ -11,7 +11,7 @@ if(!empty($_POST['email']) && !empty($_POST['password'])):
     $stmt = $conn->prepare($sql);
 
     $stmt->bindParam(':email', $_POST['email']);
-    $stmt->bindParam(':password', password_hash($_POST['password'],PASSWORD_BCRYPT));
+    $stmt->bindParam(':password', password_hash($_POST['password'],PASSWORD_BCRYPT));  // This is not working.
 
     if( $stmt->execute() ):
         $message='Successfully created new user';
@@ -43,7 +43,7 @@ endif;
 
     <?php if(!empty($message)); ?>
         <p><?= $message ?></p>
-    <?php endif; ?>
+    <?php endif; ?>  // This is not working.
 
     <h1>Register</h1>
 
