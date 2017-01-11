@@ -43,6 +43,7 @@ endif;
 
     <?php if(!empty($message)); ?>
         <p><?= $message ?></p>
+    <?php endif; ?>
 
     <h1>Register</h1>
 
