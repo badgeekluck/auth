@@ -10,8 +10,8 @@ if(!empty($_POST['email']) && !empty($_POST['password'])):
     $sql = "INSERT INTO users2 (email,password) VALUES (:email, :password)";
     $stmt = $conn->prepare($sql);
 
-    $stmt->bindParam(':email', $_POST['email']);
-    $stmt->bindParam(':password', password_hash($_POST['password'],PASSWORD_BCRYPT));  // This is not working.
+    $stmt->bindValue(':email', $_POST['email']);
+    $stmt->bindValue(':password', password_hash($_POST['password'],PASSWORD_BCRYPT));  // This is not working.
 
     if( $stmt->execute() ):
         $message='Successfully created new user';
