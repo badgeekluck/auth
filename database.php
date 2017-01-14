@@ -3,7 +3,7 @@
 $server = 'localhost';
 $username= 'root';
 $password = '';
-$database = 'auth2';
+$database = 'logintest141';
 
 
 try
