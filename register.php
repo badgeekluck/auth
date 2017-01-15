@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (isset($_SESSION['user_id']))
+{
+    header("Location: index.php");
+}
 
 require 'database.php';
 
@@ -9,17 +15,16 @@ if(!empty($_POST['email']) && !empty($_POST['pwd'])):
     //Enter the new user in the database
     $sql = "INSERT INTO user (email,pwd) VALUES (:email, :pwd)";
     $stmt = $conn->prepare($sql);
-
+    
     $stmt->bindValue(':email', $_POST['email']);
-    $stmt->bindValue(':pwd', password_hash($_POST['pwd'],PASSWORD_BCRYPT));  
+    $stmt->bindValue(':pwd',  password_hash($_POST['pwd'],PASSWORD_BCRYPT));
 
     if( $stmt->execute() ):
-        $message='Successfully created new user';
+        $message ='Successfully created a new user';
     else:
-        $message='Sorry there must have been an issue creating new user';
+        //$message = 'Sorry there must have been an issue creating a new user';
     endif;
-
-
+    
 endif;
 
 ?>
@@ -40,7 +45,7 @@ endif;
         <a href="index.php">Your App Name</a>
 
     </div>
-
+    
     <?php if(!empty($message)); ?>
         <p><?= $message ?></p>
     <? endif ?>
@@ -51,7 +56,7 @@ endif;
 
     <form action="register.php" method="POST">
 
-        <input type="text" placeholder="Enter Your Email" name="Email">
+        <input type="text"     placeholder="Enter Your Email" name="email">
 
         <input type="password" placeholder="and password" name="pwd">
 
